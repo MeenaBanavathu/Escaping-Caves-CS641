@@ -1,0 +1,52 @@
+List the commands used in the game to reach the ciphertext
+go, enter, pluck, back, give, back, back, thrnxxtzy, read
+
+Give a detailed analysis of how you figured out the password? ( Explain in less than 500 words)
+After entering a few chambers we found some mushrooms. We plucked them and gave them to the spirit who told us the magic words "thrnxxtzy". We then used these magic words to reach the next level. Giving the command 'read' gave us the hint for the password.
+Multiplicative group  {Z_p}^* is given  where p = 455470209427676832372575348833 is a prime.
+Here a*b = (axb) mod p
+It was also given that there are 3 pairs of numbers 
+(429,  431955503618234519808008749742)
+(1973, 176325509039323911968355873643)
+(7596, 98486971404861992487294722613) 
+
+Also given, pattern of g = 5___50__4_____31_____94__9
+The equations formed by the three pairs mentioned above are as follows:
+password * g^{429} = 431955503618234519808008749742 mod p→eq(1)
+password * g^{1973} = 176325509039323911968355873643 mod p→eq(2)
+password * g^{7596} = 98486971404861992487294722613 mod p→eq(3)
+
+As the second element of the pair is less than p in all three cases we use (mod p).
+Multiplying eq(1) with g^{-429} on both sides:
+password=431955503618234519808008749742∗g^{−429} mod p
+
+Substituting this in eq(2) we get
+431955503618234519808008749742 * g^{-429} * g^{1973} ≡ 176325509039323911968355873643 mod p
+
+=> g^{1544} = 176325509039323911968355873643∗(431955503618234519808008749742)^{−1} mod p
+
+From Fermat's theorem we can write  a^{-1} ≡ a^{p-2} mod p
+g^{1544} = 111590994894663139264552154672
+
+Similarly from eq(2) and eq(3) we get:
+g^{5623} = 420413074251022028027270785553
+
+Now we have two equations and a variable:
+g^{5623} * g^{-1544 * 3} = g^{991} = 161798558270556961732424822635
+g^{1544}  * g^{-991} = g^{553} = 55960264091503810362442197778
+g^{991}  * g^{-553} = g^{438} = 327597482298082119695568192760
+g^{553}  * g^{-438} = g^{115} = 212427760325417336316893638262
+g^{438}  * g^{-115} = g^{93} = 21370162515444521352934226724 
+g^{115}  * g^{-93} = g^{22} = 62875864560156876567783127811
+g^{93}  * g^{-22*4} = g^{5} = 254662155980870723273334022569
+g^{22}  * g^{-5*4} = g^{2} = 108044907665466013935627786069
+g^{5}  * g^{-2*2} = g^{1} = 52565085417963311027694339
+
+Thus g = 52565085417963311027694339
+This matches the pattern given to us.
+Substituting the value of g in eq(1) we get
+password = 431955503618234519808008749742 *(52565085417963311027694339^{429})^{-1}
+Therefore, password = 134721542097659029845273957
+
+What was the final command used to clear this level?
+134721542097659029845273957
