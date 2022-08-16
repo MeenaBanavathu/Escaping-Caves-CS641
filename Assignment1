@@ -1,0 +1,56 @@
+List the commands used in the game to reach the first ciphertext.
+1. climb
+2. read
+3. enter
+4. read
+
+What cryptosystem was used in this level?
+Sustitution Cipher
+
+What tools and observations were used to figure our the cryptosystem? (Explain in less than 100 words)
+At first sight, it was clear that the ciphertext was either a Caesar cipher or substitution cipher as there were many words repeating.
+So, we first tried Caesar Cipher and then tried various shifts but nothing came out to be successful. Now, we calculated the frequencies of all the letters and then proceeded with the mappings. So, the letter having the highest frequency was c which we substituted with e. Then, as we substituted other words the text became readable. Only the problem was the random whitespaces so we removed it and put the spaces in the appropriate place. At Last this sentence  "this is the f " of the decrypted text is shifted from the end of the text to the beginning of the text. 
+For the password part, it was given in the text that each digit in the passwords should be shifted by '2' places. Now, here we have to decrypt the '2' also. 
+Suppose digits have been shifted by z places. Then this gives us z+z=2 or z+z=12, from which either z=1 or z=6.
+By trying both the z, it turns out z=6 was the correct one.
+Finally, we decrypted the text and the password, and level 1 was solved.
+
+What is the plaintext space and ciphertext space?
+What is the mapping between the elements of plaintext space and the elements of ciphertext space? (Explain in less than 100 words)
+Ciphertext space -    
+omkf pi hdn cmgef icphsck .H krg vphqkc c, fic mco kqgf ioqag eo qfcmckf oq ficpihdn cm .Kg dcgeficu hfcm pi hdn cmklo uuncdgmc oqfc mc kfoq afihqfiokgq c!Fi cpgy cvkc yeg mfio kdck kha cokh kodjuck vn k fofvfo gqpojicmoqli opiyoa of kihsc nccqki oefc ynr2 juhpck. Fi c jhkklgm yok oMxr9V1x ya flofigvffic xvgfck. Fio kokfice.
+
+Plaintext Space- 
+This is the first chamber of the caves. as you can see, there is nothing of interest in the chamber of the caves. some of the later chambers will be more interesting than this one! the code used for this message is a simple substitution cipher in which digits have been shifted by 2 places. the password is irqy9U1qdgt without the quotes.
+
+Mapping between the elements of plaintext and the elements of ciphertext
+a - g
+b - $
+c - e
+d - m
+e - f
+f - t
+g - o
+h - a
+i - h
+j - p
+k - s
+l - w
+m - r
+n - b
+o - i
+p - c
+q - n
+r - y
+s - v
+t - $
+u - l
+v - u
+w - $
+x - q 
+y - d
+z - $
+Here some letters are mapped to '$' because they are not present in the text.
+
+What is the final command used to clear this level?
+iRqy3U5qdgt
