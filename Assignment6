@@ -1,0 +1,44 @@
+List the commands used in the game to reach the ciphertext.
+exit1, exit3, exit4, exit4, exit1, exit3, exit4, exit1, exit3, exit2, read
+
+As we enter level 6, we enter the command, exit1exit1. On the next screen, it is written that
+there are 5 exits and exit 5 is closed with a panel next to it. We tried various commands to reach the next screen. On entering different numbered exits, there was only a particular numbered exit which is leading us to a new screen. So, trying out various combinations we found the actual order of the numbered exits. On typing the particular exit the screen showed a particular hex code. We tried to decode them using ASCII codes of the
+characters. We succeeded in decoding all the hex codes which were observed to be a sentence:
+"You see a Gold−Bug in one corner. It is the key to a treasure found by". Then we reached a screen wherein any of the exit commands did not lead us to a new screen, so we tried the "read" command. This led us to the screen showing the following.
+You see the following written on the panel:
+n = 
+8436444373572503486440255453382627917470389343976334334386326034275667860921689509377926302880924650595564757217668266944527000881648177170141755476887128502044240300164925440505830343990622920190959934866956569753433165201951640951480026588738853928338105393743349699444214641968202764907970498260085751709384364443735725034864402554533826279174703893439763343343863260342756678609216895093779263028809246505955647572176682669445270008816481771701417554768871285020442403001649254405058303439906229201909599348669565697534331652019516409514800265887388539283381053937433496994442146419682027649079704982600857517093
+Achievers: This door has RSA encryption with exponent 5 and the password is 
+1640604063892909292888637627562976836096912383096384149185118201824041526423944740875064511651659363845471115593590311667717323678300818638438749964592145750413891620471843227106063780012695658754191718396818041266615234208610086901073470886377500562662233806104402224665800025255230918013355598768838721689716406040638929092928886376275629768360969123830963841491851182018240415264239447408750645116516593638454711155935903116677173236783008186384387499645921457504138916204718432271060637800126956587541917183968180412666152342086100869010734708863775005626622338061044022246658000252552309180133555987688387216897
+
+RSA encryption and decryption works as follows:
+1. Encryption: C=M^e mod NC=M^e mod N
+2. Decryption: M=C^d mod NM=C^d mod N
+To decrypt the password ,we can find the factors of N which is not possible to find as it has a high length.We can also try and compute d but as N can't be factored, we cannot find phi(N) and so cannot efficiently compute d as well.
+As the public exponent is 5, which is small, we can now use low-exponent attack 
+(Coppersmith’s Algorithm).
+This algorithm requires a polynomial as an input; thus, we need to formulate the same. So, we first check if any padding is added to the message. This is done by checking if C^{1/e} is an integer or not. We found that padding has been added. If \textit{p}p is the padding the equation modifies to:
+(p+M)^{e} = C mod N
+In the above equation e, C and N are known. We try to guess pp as Coppersmith says that if we are looking for N^{1/e} of the message, it is then a small root and we should be able to find it.
+
+Coppersmith’sTheorem:
+Let N be an integer and f be a polynomial of degree δ. Given N and f, one can recover in polynomial time all x_0 such that f(x_0) = 0 mod N and x_0 < N^{1/δ}
+So, we can form the problem as follows f(M) = (p + M)^e mod N
+For solving this, we use the code attached. 
+We run the .sage file on the CoCalc website, We modified the original coder availabe on \textit{https://github.com/mimoo/RSA-and-LLL-attacks/}https://github.com/mimoo/RSA-and-LLL-attacks/ as follows to compute the polynomial modulo N:
+1.1. We translated padding pp to its binary form p_bin.
+2.2. The length of password M is unknown, but from our assumption;
+x_0 < N^{1/e} (= 10^6) thus, M can't be longer than 200 bits.
+3. Thus, the final polynomial becomes: ((p_{bin} << length_M) + M)^e - C
+4. Root of the above polynomial is the required password and can be
+calculated using Coppersmith's Algorithm and LLL (Lattice reduction). Now, we had to find the padding and we thought that the sentence which we had gotten from the hex-codes can be the same and hence tried the same. This, worked.
+Hence the padding used was: 
+”You see a Gold-Bug in one corner. It is the key to a treasure found by”
+The root found by the modified Coppersmith's Algorithm was:
+1000011001110000101100101010000001101110110111101001100011011110011011001011001
+
+We padded this with two 0's in the beginning and picked 8 bits at a time and looked at the corresponding ASCII value and the decrypted password was found to be:
+C8YP7oLo6Y
+
+What was the final command used to clear this level?
+C8YP7oLo6Y
