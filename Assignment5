@@ -1,0 +1,31 @@
+List the commands used in the game to reach the ciphertext.
+go, wave, dive, go, read
+
+Give a detailed description of the cryptanalysis used to figure out the password. (Use Latex wherever required. If your solution is not readable, you will lose marks. If necessary the file upload option in this question must be used TO SHARE IMAGES ONLY.)
+
+After entering the commands above and typing "password", we get a text appearing "lhhkmkkqlkhkhqgkmmisjohfirfgisig""lhhkmkkqlkhkhqgkmmisjohfirfgisig" which is the encrypted password. By observing the outputs from the given inputs it is clearly seen that the letters at odd positions in the output lie in the range 'f' to 'm' i.e 8 letters so, it can be represented using 3 bits and the letters at even positions are in the range 'f' to 'u' i.e 16 letters so, it can be represented using 4 bits. So, every pair 'ab' can be constituted as an element in GF(2^7). So i^{th} byte of the output (which belongs to F_{128}) corresponds to 'a_{2i-1}a_{2i}' (overall 7 bits) where a_i(i≥0) is i^{th} letter in output. So our encrypted password (32 letters) is of 2 block length.
+Now we tried it for various inputs which led to the fact that by changing n^{th} byte in the input, output changes from the n^{th} byte which shows that the matrix is lower triangular.
+Plaintext: 'ghghghjkfdshdjfk' 
+Ciphertext: 'lsfnigktmhltfqml' 
+
+Changing the last element there is a change in the last two letters.
+Plaintext: 'ghghghjkfdshdjfg' 
+Ciphertext: 'lsfnigktmhltfqjg' 
+
+Changing the last 4th letter, there is a change from the last 4th letter in the output.
+Plaintext: 'ghghghjkfdshajfg' 
+Ciphertext: 'lsfnigktmhltkqkq' 
+
+First we have considered the first block of our text given:
+Now we have looped over 128 possibilities ( 'ab'| a ∈ 'f' to 'm', b ∈ 'f' to 'u') and found the one that gives the 1st byte of output same as 1st byte of encrypted password (say 'a_1b_1').
+Now we know the first byte and now we have looped over other 128 possibilities (i.e 'a_1b_1ff' to 'a_1b_1mu') and found the one that gives the first 2 bytes of output the same as 1st 2 bytes of encrypted password (say 'a_1b_1a_2b_2')
+Now we know the first 2 bytes and now we have checked over the other 128 possibilities (i.e 'a_1b_1a_2b_2ff' to 'a_1b_1a_2b_2mu') and found the one that gives first 3 bytes of output same as 1st 3 bytes of encryptedpassword.
+We continued the same until we got 8 bytes.
+This has given us the first block of the password and a similar approach is used to decrypt the second block.
+So finally, we got 'mkmlmflolhlglsmo' as the decrypted first block and 'lklgifififififif' as the decrypted second block.
+(Example: For pair 'mk', 'm' => 0111 ('m' - 'f' = 7 ), 'k' => 0101 ('k' - 'f' = 5 ) stacking both gives 01110101 = 11701110101=117 which is 'u' in ASCII representation).
+ASCII values for the given text are 117117 118118 112112 105105 9898 9797 109109 121121 101101 9797 4848 4848 4848 4848 4848 4848
+Thus "uvpibamyea000000" is the text after conversion. Ignoring 0's "uvpibamyea""uvpibamyea" is the decrypted password used to clear this level.
+
+What was the final commands used to clear this level?
+uvpibamyea
