@@ -1,0 +1,44 @@
+List the commands used in the game to reach the ciphertext.
+go
+go
+read
+
+What cryptosystem was used in this level?
+Playfair cipher
+
+What tools and observations were used to figure out the cryptosystem? (Explain in less than 300 words)
+1.After going through the chamber with go command .It is seen there was a morse code .So after decoing the morse code we got CRYPTANALYSIS .
+2.It was also mentioned in the paragraph "you must always believe in yourself and 'PLAY FAIR'..we thought the PLAY FAIR algoritham will help up to decrypt the cipher text. This led us to decode the cipher text using 'PLAYFAIR' cipher with the encryption key CRYPTANALYSIS.
+
+
+Briefly describe the decryption algorithm used. Also mention the plaintext you deciphered. ( Use less than 350 words)
+
+PLAYFAIR cipher is a type of symmetric key encryption where both encryption key and decryption key are same. As we know the keyword used here which is CRYPTANALYSIS, a 5x5 matrix is drawn, and letters are filled in each cell, starting with the keyword, followed by the letters in the alphabet. I/J are filled in the same cell. All repeating letters are removed, giving us this matrix
+C  R  Y  P  T
+A  N  L  S  I/J
+B  D  E  F  G
+H  K  M O  Q
+U  V  W X  Z
+This grid is used to encrypt/decrypt the text correspondingly. Here, we were given with the ciphertext which needs to be converted to plaintext. 
+Rules followed to decrypt the text:
+1. Split the cipher text into digrams.
+2. Then we used the following rules. Two ciphertext letters in the same row of the matrix are each replaced by the letter to the left, with the last element of the row circularly following the first. (because during the encryption we replace them with letters right to them.)
+3. In the similar fashion two ciphertext letters that fall in the same column of the matrix are replaced by the letters above, with the bottom element of the column circularly following the top.
+4. Otherwise, each ciphertext letter in a pair is replaced by the letter that lies in its own row and the column occupied by the other ciphertext letter of the digram.
+5. Finally we removes extra 'X' which is inserted between two identical words or when there is a shortage of one word during encryption.
+6. We replaced 'I' with 'J' as we combined both I and J in the 5x5 matrix we considered.
+
+Cipher text:
+DF ULYP XO CQD LFWC RUBHEDY, CQDYG LN XDYL EGIYIG LMP CQDYF.
+LYFNH HXPZ CQF YNILXKPB "NDCB_AN_BBHCN" PQ FQ CQPKZBK. OLC PMC
+UNUG YMB IPYDIDCQ OXY CMB LDZP AULHDFY. CX OALG RMB FWGI PMX
+BNTIP ZLSWS LFWFE PQ ZCYGY KIBAT XMNKI PMBYD.
+
+Plain text:
+BE WARY OF THE NEXT CHAMBER, THERE IS VERY LITTLE JOY THERE.
+SPEAK OUTX THE PASSWORD "ABRA_CA_DABRA" TO GO THROUGH. MAY YOU
+HAVE THE STRENGTH FOR THE NEXT CHAMBER. TO FIND THE EXIT YOU
+FIRST WILL NEED TO UTTER MAGIC WORDS THERE.
+
+What was the final command used to clear this level?
+ABRA_CA_DABRA
