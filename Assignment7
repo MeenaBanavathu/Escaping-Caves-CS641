@@ -1,0 +1,32 @@
+List the commands used in the game to reach the ciphertext.
+go,go,go,go,go,give,read
+
+Give a detailed description of the cryptanalysis used to figure out the password. ( Use Latex wherever required. If your solution is not readable, you will lose marks. If necessary the file upload option in this question must be used TO SHARE IMAGES ONLY.)
+
+We used the above commands, which led us to a panel and the following is written on it with a list of numbers.
+"You must be wondering about these numbers. These are hash values of your password
+which is made of letters between 'f' and 'u'. Also, the letters in the password are
+in alphabetic order. For hashing, your password is viewed as a sequence
+of numbers x_1, x_2, ..., x_m in the field F_{127}. The ith number of the hashed
+sequence equals x_1^{i-1} + x_2^{i-1} + ... + x_m^{i-1}. As you can see, there are 32 such numbers for i = 1 to 32."
+
+We tried using the hashing method to find the message.
+Given P : [23 62 124 37 73 104 5 47 97 60 8 33 39 97 121 38 30 126 60 70 123 113 38 90 50 115 36 118 75 55 36 43]
+Let it be termed as P_0, P_1, P_2, ... , P_m.
+We need to decrypt the message XX which is in the format as x_0, x_1, x_2, ... , x_m
+The formula used is P_i = sum_{j=1}^{m}(x_j)^i.
+From the formula , P_0 = 23 and P_0 = sum_{j=1}^{m}(x_j)^0 
+Thus, we get m = 23 which indicates the length of the message is 23. 
+
+Now as we know that P_i = sum_{j=1}^{m}(x_j)^i and for i≥0 denote by e_i(x_1, ..., x_m) the elementary symmetric polynomial (sum of all distinct products of i distinct variables)
+From this we get
+e_0(x_1, x_2,..., x_m) = 1
+e_1(x_1, x_2,..., x_m) = x_1+x_2+...+x_m
+e_2(x_1, x_2,..., x_m) = sum_{1 \le i \lt j \le n}(x_i)(x_j)
+Continuing this we get
+e_m(x_1, x_2,..., x_m) = x_1x_2...x_m
+e_0(x_1, x_2,..., x_m) = 0
+k>m
+
+What was the final command used to clear this level?
+fghijklmopqu
